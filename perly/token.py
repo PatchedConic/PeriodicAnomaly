@@ -3,4 +3,4 @@ from dataclasses import dataclass
 @dataclass
 class Token:
     type: str
-    value: str = None
+    value: float = None

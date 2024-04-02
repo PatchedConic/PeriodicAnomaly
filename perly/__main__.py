@@ -11,12 +11,12 @@ def main(args):
             token = Token('num', str(arg))
             stack.add_token(token)
             stack.enter()
-        if str(arg) in TOKENTYPES:
+        elif str(arg) in TOKENTYPES:
             token = Token(arg)
             stack.add_token(token)
     for x in stack.stack:
         if x != '':
-            print(x )
+            print(x)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

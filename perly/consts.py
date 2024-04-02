@@ -1,10 +1,10 @@
 DIGITS = "1234567890."
 
 BINARY_OPERATORS = '^+-*/'
-UNIARY_OPERATORS = 'n!'
+UNARY_OPERATORS = 'n!'
 
 OPERATORS = "!^i+-*/n"
-FUNCTIONS = ['sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'sq',
-             'sqrt', 'log', 'ln', 'pi', 'e']
+FUNCTIONS = ['sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'square',
+             'sqrt', 'log', 'ln', 'pi', 'e', 'del', 'clear', 'swap']
 TRIG_FUNCS = ['sin', 'cos', 'tan', 'asin', 'acos', 'atan']
-TOKENTYPES = ['num', '+','-','*','/', 'n', '!','^', '.'] + FUNCTIONS
+MATH_TOKENS = ['+','-','*','/', 'n', '!','^'] + FUNCTIONS
