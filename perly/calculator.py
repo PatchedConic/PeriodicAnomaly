@@ -83,9 +83,14 @@ class Calculator():
                 val2 = self.stack.pop()
                 self.receive(Token('num', str(math.log(val2, val1))))
             elif token.type == 'swap':
-                val1 = self.stack.pop()
-                val2 = self.stack.pop()
-                self.receive(Token('num', val1), Token('num', val2))
+                try:
+                    val1 = self.stack.pop()
+                    val2 = self.stack.pop()
+                    self.receive(Token('num', val1), Token('num', val2))
+                except IndexError:
+                    try:
+                        self.receive(Token('num', val1))
+                    except: pass
             elif token.type == 'square':
                 self.receive(Token('num', self.stack.pop()**2))
             elif token.type == 'sqrt':
