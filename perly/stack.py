@@ -1,8 +1,3 @@
-from .token import Token
-from .consts import *
-
-
-
 class Stack:
     def __init__(self):
         """A representation of a computational stack
@@ -13,55 +8,57 @@ class Stack:
             
         Methods
         -------
-        add_token
-            adds a token to the class which either adds a number to the stack or performs a calculation on the stack"""
+        append(num:float)
+            adds a number to the stack
+        pop()
+            pops the last number from the stack
+        get_significant_digits()
+            returns the current number of sig figs the stack is set to
+        set_significant_digits(digits:int)
+            sets the stack's number of sig figs
+        clear()
+            clears the stack
+        """
         
         
         self.stack = []
-        self.SIGNIFICANT_DIGITS = 3
+        self.sig_figs = 3
 
     def pop(self) -> float:
         try:
             return self.stack.pop()
         except IndexError:
-            raise IndexError
+            raise Exception("Popped from empty stack")
     
     def get_significant_digits(self) -> int:
-        return self.SIGNIFICANT_DIGITS
+        return self.sig_figs
 
-    def set_significant_digits(self, value:int) -> None:
+    def set_significant_digits(self, digits:int) -> None:
         try:
-            int(value)
-            self.SIGNIFICANT_DIGITS = value
+            int(digits)
+            self.sig_figs = digits
         except ValueError:
-            raise Exception(f"Invalid value for significant digits: {value}")
+            raise Exception(f"Invalid value for significant digits: {digits}")
 
     def clear(self) -> None:
         self.stack = []
 
-    def add_token(self, token:Token) -> None:
+    def append(self, *value:float) -> None:
         """
         Takes a token or list of tokens and adds them to the stack or executes a computation as appropriate
         """
-        if not isinstance(token, Token):
-            raise Exception(f"Invalid token: {token}")
-        
-        if not token.type == 'num':
-            raise Exception(f"Invalid token type: {token.type}")
-        
-        else:
-            if token.value != '':
-                try:
-                    self.stack.append(float(token.value))
-                except ValueError:
-                    raise Exception(f"Invalid number token, unable to convert {token.value} to float")
-                
+        for i in value:
+            try:
+                float(i)
+                self.stack.append(float(i))
+            except ValueError:
+                raise Exception(f"Invalid number passed to stack {i}")
     
     def __repr__(self) -> str:
         if self.stack != []:
             rep_string = ''
-            for x in self.stack[:-1]:
-                rep_string += str(x) + '\n'
-            rep_string += str(self.stack[-1])
+            for entry in self.stack[:-1]:
+                rep_string += f'%.{self.get_significant_digits()}g' % entry + '\n'
+            rep_string += f'%.{self.get_significant_digits()}g' % self.stack[-1]
         else: rep_string = ''
         return rep_string

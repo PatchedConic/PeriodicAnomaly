@@ -1,19 +1,18 @@
 from .calculator import Calculator
-from .token import Token
 from .consts import *
 import sys
 
-def main(args):
+def main(args:list[float|str]):
     calculator = Calculator()
     for arg in args:
         if arg in MATH_TOKENS:
-            calculator.receive(Token(arg))
+            calculator.receive(arg)
         else:
             try:
                 float(arg)
-                calculator.receive(Token('num', arg))
+                calculator.receive(float(arg))
             except ValueError:
-                pass
+                raise Exception(f"Invalid entry {arg}")
     print(calculator.stack)
 
 if __name__ == "__main__":

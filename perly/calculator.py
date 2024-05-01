@@ -1,137 +1,116 @@
 from .stack import Stack
-from .token import Token
 from .consts import MATH_TOKENS, UNARY_OPERATORS, BINARY_OPERATORS, FUNCTIONS
 import math
 
 class Calculator():
     def __init__(self):
         self.stack = Stack()
-        self.ANGULAR_MODE = 'rad'
 
     def __repr__(self):
         return self.stack
 
-    def get_angular_mode(self) -> str:
-        '''Returns the current angular mode of the calculator'''
-        return self.ANGULAR_MODE
-
-    def set_angular_mode(self, value:str) -> None:
-        '''Sets the angular mode of the calculator to \'deg\' or \'rad\''''
-        if value == 'deg' or 'rad':
-            self.ANGULAR_MODE = value
-        else:
-            raise Exception(f"Invalid angular mode set: {value}")
-
-    def receive(self, *tokens:Token) -> None:
+    def receive(self, *tokens:float | int | str) -> None:
         for token in tokens:
-            if not isinstance(token, Token):
-                raise Exception("Invalid token, not of class Token...")
+            if not isinstance(token, float | int) and token not in MATH_TOKENS:
+                raise Exception(f"Invalid token, not number or math operator {token}")
             else:
-                if token.type == 'num':
+                if isinstance(token, float | int):
                     self.add_entry(token)
-                elif token.type in MATH_TOKENS:
+                elif token in MATH_TOKENS:
                     self.operate(token)
-                else:
-                    raise Exception("Invalid token type...")
     
-    def operate(self, token:Token) -> None:
-        if token.type in UNARY_OPERATORS:
+    def operate(self, token:str) -> None:
+        if token in UNARY_OPERATORS:
             self.unary(token)
-        elif token.type in BINARY_OPERATORS:
+        elif token in BINARY_OPERATORS:
             self.binary(token)
-        elif token.type in FUNCTIONS:
+        elif token in FUNCTIONS:
             self.func(token)
 
-    def func(self, token:Token) -> None:
+    def func(self, token:str) -> None:
         try:
-            if token.type == 'clear':
-                self.stack.clear()
-            elif token.type == 'del':
-                self.stack.pop()
-            elif token.type == 'pi':
-                self.receive(Token('num', math.pi))
-            elif token.type == 'e':
-                self.receive(Token('num', str(math.e)))
-            elif token.type == 'sin' and self.ANGULAR_MODE == 'rad':
-                self.receive(Token('num', str(math.sin(self.stack.pop()))))
-            elif token.type == 'cos' and self.ANGULAR_MODE == 'rad':
-                self.receive(Token('num', str(math.cos(self.stack.pop()))))
-            elif token.type == 'tan' and self.ANGULAR_MODE == 'rad':
-                self.receive(Token('num', str(math.tan(self.stack.pop()))))
-            elif token.type == 'sin' and self.ANGULAR_MODE == 'deg':
-                self.receive(Token('num', str(math.sin(self.stack.pop()*2*math.pi/360))))
-            elif token.type == 'cos' and self.ANGULAR_MODE == 'deg':
-                self.receive(Token('num', str(math.cos(self.stack.pop()*2*math.pi/360))))
-            elif token.type == 'tan' and self.ANGULAR_MODE == 'deg':
-                self.receive(Token('num', str(math.tan(self.stack.pop()*2*math.pi/360))))
-            elif token.type == 'asin' and self.ANGULAR_MODE == 'rad':
-                self.receive(Token('num', str(math.asin(self.stack.pop()))))
-            elif token.type == 'acos' and self.ANGULAR_MODE == 'rad':
-                self.receive(Token('num', str(math.cos(self.stack.pop()))))
-            elif token.type == 'atan' and self.ANGULAR_MODE == 'rad':
-                self.receive(Token('num', str(math.atan(self.stack.pop()))))
-            elif token.type == 'asin' and self.ANGULAR_MODE == 'deg':
-                self.receive(Token('num', str(math.asin(self.stack.pop())*360/(2*math.pi))))
-            elif token.type == 'acos' and self.ANGULAR_MODE == 'deg':
-                self.receive(Token('num', str(math.acos(self.stack.pop())*360/(2*math.pi))))
-            elif token.type == 'atan' and self.ANGULAR_MODE == 'deg':
-                self.receive(Token('num', str(math.atan(self.stack.pop())*360/(2*math.pi))))
-            elif token.type == 'ln':
-                self.receive(Token('num', str(math.log(self.stack.pop()))))
-            elif token.type == 'log':
-                val1 = self.stack.pop()
-                val2 = self.stack.pop()
-                self.receive(Token('num', str(math.log(val2, val1))))
-            elif token.type == 'swap':
-                try:
+            match token:
+                case 'clear':
+                    self.stack.clear()
+                case 'del':
+                    self.stack.pop()
+                case 'pi':
+                    self.receive(math.pi)
+                case  'e':
+                    self.receive(math.e)
+                case "sin":
+                    self.receive(math.sin(self.stack.pop()))
+                case "cos":
+                    self.receive(math.cos(self.stack.pop()))
+                case "tan":
+                    self.receive(math.tan(self.stack.pop()))
+                case "sind":
+                    self.receive(math.sin(self.stack.pop()*2*math.pi/360))
+                case "cosd":
+                    self.receive(math.cos(self.stack.pop()*2*math.pi/360))
+                case "tand":
+                    self.receive(math.tan(self.stack.pop()*2*math.pi/360))
+                case 'asin':
+                    self.receive(math.asin(self.stack.pop()))
+                case 'acos':
+                    self.receive(math.cos(self.stack.pop()))
+                case'atan':
+                    self.receive(math.atan(self.stack.pop()))
+                case 'asind':
+                    self.receive(math.asin(self.stack.pop())*360/(2*math.pi))
+                case 'acosd':
+                    self.receive(math.acos(self.stack.pop())*360/(2*math.pi))
+                case 'atand':
+                    self.receive(math.atan(self.stack.pop())*360/(2*math.pi))
+                case 'ln':
+                    self.receive(math.log(self.stack.pop()))
+                case 'log':
                     val1 = self.stack.pop()
                     val2 = self.stack.pop()
-                    self.receive(Token('num', val1), Token('num', val2))
-                except IndexError:
+                    self.receive(math.log(val2, val1))
+                case'swap':
                     try:
-                        self.receive(Token('num', val1))
-                    except: pass
-            elif token.type == 'square':
-                self.receive(Token('num', self.stack.pop()**2))
-            elif token.type == 'sqrt':
-                self.receive(Token('num', self.stack.pop()**0.5))
+                        val1 = self.stack.pop()
+                        val2 = self.stack.pop()
+                        self.receive(val1, val2)
+                    except IndexError:
+                        try:
+                            self.receive(val1)
+                        except: pass
+                case 'square':
+                    self.receive(self.stack.pop()**2)
+                case 'sqrt':
+                    self.receive(self.stack.pop()**0.5)
         except IndexError:
             pass
 
-    def binary(self, token:Token) -> None:
+    def binary(self, token:str) -> None:
         try:
-            if token.type == "+":
-                self.receive(Token('num',
-                                str(self.stack.pop()+self.stack.pop())))
-            elif token.type == "-":
-                self.receive(Token('num',
-                                str(-1*self.stack.pop()+self.stack.pop())))
-            elif token.type == "*":
-                self.receive(Token('num',
-                                str(self.stack.pop()*self.stack.pop())))
-            elif token.type == "/":
-                self.receive(Token('num',
-                                str((1/self.stack.pop())*self.stack.pop())))
-            elif token.type == '^':
-                val1 = self.stack.pop()
-                val2 = self.stack.pop()
-                self.receive(Token('num', str(val2**val1)))
+            match token:
+                case "+":
+                    self.receive(self.stack.pop()+self.stack.pop())
+                case "-":
+                    self.receive(-1*self.stack.pop()+self.stack.pop())
+                case 'x'|'X|*':
+                    self.receive(self.stack.pop()*self.stack.pop())
+                case "/":
+                    self.receive((1/self.stack.pop())*self.stack.pop())
+                case '^':
+                    val1 = self.stack.pop()
+                    val2 = self.stack.pop()
+                    self.receive(val2**val1)
         except IndexError:
             pass
 
-    def unary(self, token:Token) -> None:
+    def unary(self, token:str) -> None:
         try:
-            if token.type == 'n':
-                self.receive(Token('num',str(-1*self.stack.pop())))
-            elif token.type =='!':
-                self.receive(Token('num', str(math.factorial(int(self.stack.pop())))))
+            match token:
+                case 'n':
+                    self.receive(-1*self.stack.pop())
+                case '!':
+                    self.receive(math.factorial(int(self.stack.pop())))
         except IndexError:
             pass
 
-    def add_entry(self, token:Token) -> None:
-        try:
-            float(token.value)
-            self.stack.add_token(token)
-        except ValueError:
-            print(token)
-            raise Exception("Invalid number")
+    def add_entry(self, token:float | int) -> None:
+        self.stack.append(token)
