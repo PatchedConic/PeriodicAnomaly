@@ -1,5 +1,3 @@
-# DIGITS = "1234567890."
-
 BINARY_OPERATORS = '^+-xX/*'
 UNARY_OPERATORS = 'n!'
 
