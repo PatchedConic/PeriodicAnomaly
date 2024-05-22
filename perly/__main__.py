@@ -1,5 +1,4 @@
 from .calculator import Calculator
-from .consts import *
 import argparse
 
 def main(args:list[float|str]):

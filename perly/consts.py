@@ -1,9 +1,5 @@
 import math
 
-FUNCTIONS = ['sin', 'cos', 'tan', 'sind', 'cosd', 'tand', 'asin', 'acos', 'atan', 'asind', 'acosd', 'atand', 'square',
-             'sqrt', 'log', 'ln', 'pi', 'e']
-MATH_TOKENS = ['+','-', '*', '/', 'n', '!','^', 'i', 's', 'c'] + FUNCTIONS
-
 FUNCTIONS_DICT = {
     "+":lambda stack:stack.pop()+stack.pop(),
     "-":lambda stack:-stack.pop()+stack.pop(),
@@ -33,3 +29,5 @@ FUNCTIONS_DICT = {
     "pi":lambda stack:math.pi,
     "s":lambda stack:stack.append(stack.pop(),stack.pop())
 }
+
+MATH_TOKENS = FUNCTIONS_DICT.keys()
