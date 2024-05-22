@@ -19,6 +19,9 @@ class Calculator():
 
     def __repr__(self):
         return self.stack
+    
+    def __len__(self):
+        return len(self.stack)
 
     def pop(self, n: int = 0) -> float:
         return self.stack.pop(n)
@@ -30,7 +33,7 @@ class Calculator():
                 self.stack.append(token)
             except:
                 if token in MATH_TOKENS:
-                    self.push(FUNCTIONS_DICT[token](self.stack))
+                    self.push(FUNCTIONS_DICT[token](self))
                 elif token == None:
                     pass
                 else:

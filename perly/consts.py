@@ -6,10 +6,10 @@ FUNCTIONS_DICT = {
     "-":funcs.subtract,
     "*":funcs.multiply,
     "/":funcs.divide,
-    "n":lambda stack:-stack.pop(),
-    "!":lambda stack:math.factorial(int(stack.pop())),
-    "^":lambda stack:math.pow(y=stack.pop(), x=stack.pop()),
-    "i":lambda stack:1/stack.pop(),
+    "n":funcs.negate,
+    "!":funcs.factorial,
+    "^":funcs.power,
+    "invert":funcs.invert,
     "sin":lambda stack:math.sin(stack.pop()),
     "cos":lambda stack:math.cos(stack.pop()),
     "tan":lambda stack:math.tan(stack.pop()),
@@ -22,13 +22,12 @@ FUNCTIONS_DICT = {
     "asind":lambda stack:math.asin(stack.pop())*360/(math.pi*2),
     "acosd":lambda stack:math.acos(stack.pop())*360/(2*math.pi),
     "atand":lambda stack:math.atan(stack.pop())*360/(2*math.pi),
-    "square":lambda stack:math.pow(stack.pop(),2),
-    "sqrt":lambda stack:math.sqrt(stack.pop()),
-    "ln":lambda stack:math.log(stack.pop()),
-    "e":lambda stack: math.e,
-    "c":lambda stack:stack.clear(),
-    "pi":lambda stack: math.pi,
-    "s":lambda stack:stack.append(stack.pop(),stack.pop())
+    "square":funcs.square,
+    "sqrt":funcs.sqrt,
+    "ln":funcs.log,
+    "e":funcs.e,
+    "pi":funcs.pi,
+    "swap": funcs.swap
 }
 
 MATH_TOKENS = FUNCTIONS_DICT.keys()
