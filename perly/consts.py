@@ -1,10 +1,11 @@
 import math
+import perly.functions as funcs
 
 FUNCTIONS_DICT = {
-    "+":lambda stack:stack.pop()+stack.pop(),
-    "-":lambda stack:-stack.pop()+stack.pop(),
-    "*":lambda stack:stack.pop()*stack.pop(),
-    "/":lambda stack:(1/stack.pop()*stack.pop()),
+    "+":funcs.addition,
+    "-":funcs.subtraction,
+    "*":funcs.multiply,
+    "/":funcs.divide,
     "n":lambda stack:-stack.pop(),
     "!":lambda stack:math.factorial(int(stack.pop())),
     "^":lambda stack:math.pow(y=stack.pop(), x=stack.pop()),

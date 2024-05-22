@@ -1,4 +1,4 @@
-from .stack import Stack
+# from .stack import Stack
 from .consts import *
 
 class Calculator():
@@ -15,25 +15,22 @@ class Calculator():
     """
     
     def __init__(self):
-        self.stack = Stack()
+        self.stack = []
 
     def __repr__(self):
         return self.stack
 
-    def receive(self, *tokens:float | int | str) -> None:
+    def pop(self, n: int = 0) -> float:
+        return self.stack.pop(n)
+
+    def push(self, *tokens:float | str) -> None:
         for token in tokens:
             try:
-                self.add_entry(float(token))
+                self.push(token)
             except:
                 if token in MATH_TOKENS:
-                    self.operate(token)
+                    self.push(FUNCTIONS_DICT[token](self.stack))
                 elif token == None:
                     pass
                 else:
                     raise Exception(f"Invalid token: {token}")
-                
-    def operate(self, token:str) -> None:
-        self.receive(FUNCTIONS_DICT[token](self.stack))
-
-    def add_entry(self, token:float | int) -> None:
-        self.stack.append(token)
