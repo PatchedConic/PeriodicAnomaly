@@ -1,5 +1,4 @@
 import math
-# from perly.calculator import Calculator
 
 def addition(item) -> float:
     if len(item)>1 : return item.pop() + item.pop()
@@ -7,7 +6,7 @@ def addition(item) -> float:
         pass
 
 def subtract(item) -> float:
-    if len(item)>1 : return -1*item.pop()+item.pop()
+    if len(item)>1 : return item.pop(1)-item.pop()
     else:
         pass
 
@@ -17,7 +16,8 @@ def multiply(item) -> float:
         pass
 
 def divide(item) -> float:
-    if len(item)>1 : return (1/item.pop()) * item.pop()
+    if len(item)>1 : 
+        return (item.pop(1) / item.pop())
     else:
         pass
 def negate(item) -> float:
@@ -65,6 +65,4 @@ def log(item) -> float:
 
 def swap(item) -> None:
     if len(item) > 1:
-        first = item.pop()
-        second = item.pop()
-        item.push(second, first)
+        item.push(item.pop(1), item.pop())
