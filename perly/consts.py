@@ -28,8 +28,8 @@ FUNCTIONS_DICT = {
     "square":lambda stack:math.pow(stack.pop(),2),
     "sqrt":lambda stack:math.sqrt(stack.pop()),
     "ln":lambda stack:math.log(stack.pop()),
-    "e":lambda stack:math.e,
+    "e":lambda stack: math.e,
     "c":lambda stack:stack.clear(),
-    "pi":lambda stack:math.pi,
+    "pi":lambda stack: math.pi,
     "s":lambda stack:stack.append(stack.pop(),stack.pop())
 }
