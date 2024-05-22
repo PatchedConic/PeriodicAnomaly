@@ -26,7 +26,8 @@ class Calculator():
     def push(self, *tokens:float | str) -> None:
         for token in tokens:
             try:
-                self.push(token)
+                float(token)
+                self.stack.append(token)
             except:
                 if token in MATH_TOKENS:
                     self.push(FUNCTIONS_DICT[token](self.stack))
@@ -34,3 +35,8 @@ class Calculator():
                     pass
                 else:
                     raise Exception(f"Invalid token: {token}")
+
+if __name__ == "__main__":
+    calc = Calculator()
+    calc.push(1, 2, 3, '+', '-', 'n', 2, '/')
+    print(calc.stack)

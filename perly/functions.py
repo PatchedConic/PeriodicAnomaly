@@ -6,8 +6,8 @@ def addition(item) -> float:
     else:
         pass
 
-def subtraction(item) -> float:
-    if len(item)>1 : return item.pop(1)-item.pop()
+def subtract(item) -> float:
+    if len(item)>1 : return -1*item.pop()+item.pop()
     else:
         pass
 
@@ -17,6 +17,17 @@ def multiply(item) -> float:
         pass
 
 def divide(item) -> float:
-    if len(item)>1 : return item.pop(1) / item.pop()
+    if len(item)>1 : return (1/item.pop()) * item.pop()
     else:
         pass
+def negate(item) -> float:
+    if len(item) > 0: return item.pop()*-1
+    else:
+        pass
+
+def factorial(item) -> int:
+    if len(item) > 0:
+        number = item.pop()
+        if type(number) == 'int': return math.factorial(number)
+        else: pass
+    else: pass

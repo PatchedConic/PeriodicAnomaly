@@ -3,7 +3,7 @@ import perly.functions as funcs
 
 FUNCTIONS_DICT = {
     "+":funcs.addition,
-    "-":funcs.subtraction,
+    "-":funcs.subtract,
     "*":funcs.multiply,
     "/":funcs.divide,
     "n":lambda stack:-stack.pop(),
