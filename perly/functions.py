@@ -27,19 +27,20 @@ def negate(item) -> float:
 
 def factorial(item) -> int:
     if len(item) > 0:
-        number = item.pop()
-        if type(number) == 'int': return math.factorial(number)
-        else: pass
+        try:
+            return math.factorial(int(item.pop()))
+        except:
+            pass
     else: pass
 
 def power(item) -> float:
     if len(item) > 1:
-        return math.pow(y = item.pop(), x = item.pop())
+        return math.pow(item.pop(1), item.pop())
     else: pass
 
 def invert(item) -> float:
     if len(item) > 0:
-        return item.pop() * -1
+        return 1/item.pop() 
     else: pass
 
 def square(item) -> float:
@@ -52,10 +53,10 @@ def sqrt(item) -> float:
         return math.sqrt(item.pop())
     else: pass
 
-def pi() -> float:
+def pi(item) -> float:
     return math.pi
 
-def e() -> float:
+def e(item) -> float:
     return math.e
 
 def log(item) -> float:
@@ -65,4 +66,6 @@ def log(item) -> float:
 
 def swap(item) -> None:
     if len(item) > 1:
-        item.push(item.pop(1), item.pop())
+        first = item.pop()
+        second = item.pop()
+        item.push(first, second)

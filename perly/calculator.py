@@ -34,7 +34,7 @@ class Calculator():
         for token in tokens:
             try:
                 float(token)
-                self.stack.insert(-1, token)
+                self.stack.insert(0, token)
             except:
                 if token in MATH_TOKENS:
                     try:
