@@ -6,7 +6,7 @@ FUNCTIONS_DICT = {
     "-":funcs.subtract,
     "*":funcs.multiply,
     "/":funcs.divide,
-    "n":funcs.negate,
+    "negate":funcs.negate,
     "!":funcs.factorial,
     "^":funcs.power,
     "invert":funcs.invert,
@@ -24,7 +24,7 @@ FUNCTIONS_DICT = {
     "atand":lambda stack:math.atan(stack.pop())*360/(2*math.pi),
     "square":funcs.square,
     "sqrt":funcs.sqrt,
-    "ln":funcs.log,
+    "log":funcs.log,
     "e":funcs.e,
     "pi":funcs.pi,
     "swap": funcs.swap

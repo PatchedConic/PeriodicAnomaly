@@ -4,7 +4,7 @@ import argparse
 def main(args:list[float|str]):
     calculator = Calculator()
     for arg in args:
-        calculator.receive(arg)
+        calculator.push(arg)
     print(calculator.stack)
 
 if __name__ == "__main__":

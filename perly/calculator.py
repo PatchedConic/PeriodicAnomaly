@@ -18,7 +18,7 @@ class Calculator():
         self.stack = []
 
     def __repr__(self):
-        return self.stack
+        return str(self.stack)
     
     def __len__(self):
         return len(self.stack)
@@ -34,7 +34,7 @@ class Calculator():
         for token in tokens:
             try:
                 float(token)
-                self.stack.insert(-1, token)
+                self.stack.insert(0, token)
             except:
                 if token in MATH_TOKENS:
                     try:
@@ -45,3 +45,8 @@ class Calculator():
                     pass
                 else:
                     raise Exception(f"Invalid token: {token}")
+
+if __name__ == '__main__':
+    calc = Calculator()
+    calc.push(1, 2, 3.14159)
+    print(calc)
