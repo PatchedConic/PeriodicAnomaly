@@ -1,4 +1,3 @@
-import math
 import perly.functions as funcs
 
 FUNCTIONS_DICT = {

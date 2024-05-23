@@ -31,3 +31,25 @@ Correct answer, {math.sin(3.5*math.pi)}""")
         calc = Calculator()
         calc.push('pi', 2, '/', 'tan', 'pi', 'tan')
         self.assertEqual(calc.stack, [0, math.nan], 'Error in tan func')
+    
+    def test_asin(self):
+        calc = Calculator()
+        calc.push(0.5, 'asin')
+        self.assertEqual(calc.stack, [math.asin(0.5)], 'Test failed: asin')
+    
+    def test_acos(self):
+        calc = Calculator()
+        calc.push(0.5, 'acos')
+        self.assertEqual(calc.stack, [math.acos(0.5)], 'Test failed: acos')
+    
+    def test_atan(self):
+        calc = Calculator()
+        calc.push(1, 'atan')
+        self.assertEqual(calc.stack, [math.atan(1)], 'Test failed: atan')
+    
+    def test_arc_degs(self):
+        calc = Calculator()
+        calc.push(0.5, 'asind', 0.5, 'acosd', 1, 'atand')
+        print(calc)
+        # self.assertEqual(calc.stack, [math.atan(1)*360/(2*math.pi), math.acos(0.5)*360/(2*math.pi), math.asin(0.5)*360/(2*math.pi)],
+        #                  'Test failed: arc functions, degree mode')

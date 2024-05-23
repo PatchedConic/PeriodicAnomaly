@@ -43,25 +43,27 @@ def tand(item) -> float:
 
 def asin(item) -> float:
     try:
-        return asin(item.pop())
+        return math.asin(item.pop())
+
     except:
-        pass
+        print("panic")
+        raise Exception
 
 def acos(item) -> float:
     try:
-        return acos(item.pop())
+        return math.acos(item.pop())
     except:
         pass
 
 def atan(item) -> float:
     try:
-        return atan(item.pop())
+        return math.atan(item.pop())
     except:
         pass
 
 def asind(item) -> float:
     try:
-        return asin(item.pop())*360/(math.pi*2)
+        return (asin(item.pop())*360/(math.pi*2))
     except:
         pass
 
