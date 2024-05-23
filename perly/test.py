@@ -1,7 +1,11 @@
-# from .calculator import Calculator
-# from .Token import Token
-# import unittest
-# from .stack import Stack
+from perly.calculator import Calculator
+import unittest
+
+class CalculatorTest(unittest.TestCase):
+    def test_push_nums(self):
+        calc = Calculator()
+        calc.push(1, 2, 3.14159)
+        self.assertEqual(calc, '[1, 2, 3.14159]', 'Error: pushing nums to calc failed')
 
 # class StackTest(unittest.TestCase):
 #     def test_append(self):
