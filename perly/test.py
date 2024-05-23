@@ -49,7 +49,6 @@ Correct answer, {math.sin(3.5*math.pi)}""")
     
     def test_arc_degs(self):
         calc = Calculator()
-        calc.push(0.5, 'asind', 0.5, 'acosd', 1, 'atand')
-        print(calc)
-        # self.assertEqual(calc.stack, [math.atan(1)*360/(2*math.pi), math.acos(0.5)*360/(2*math.pi), math.asin(0.5)*360/(2*math.pi)],
-        #                  'Test failed: arc functions, degree mode')
+        calc.push(0.5, 'asind', .5, 'acosd', 1, 'atand')
+        self.assertEqual(calc.stack, [math.atan(1)*360/(2*math.pi), math.acos(0.5)*360/(2*math.pi), math.asin(0.5)*360/(2*math.pi)],
+                         'Test failed: arc functions, degree mode')

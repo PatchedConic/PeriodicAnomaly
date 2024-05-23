@@ -46,7 +46,6 @@ def asin(item) -> float:
         return math.asin(item.pop())
 
     except:
-        print("panic")
         raise Exception
 
 def acos(item) -> float:
@@ -63,19 +62,19 @@ def atan(item) -> float:
 
 def asind(item) -> float:
     try:
-        return (asin(item.pop())*360/(math.pi*2))
+        return (asin(item)*360/(math.pi*2))
     except:
         pass
 
 def acosd(item) -> float:
     try:
-        return acos(item.pop())*360/(math.pi*2)
+        return acos(item)*360/(math.pi*2)
     except:
         pass
 
 def atand(item) -> float:
     try:
-        return atan(item.pop())*360/(math.pi*2)
+        return atan(item)*360/(math.pi*2)
     except:
         pass
 
