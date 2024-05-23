@@ -26,3 +26,8 @@ Correct answer, {math.sin(3.5*math.pi)}""")
         calc = Calculator()
         calc.push(3, 'pi', 2, '/', '*', 'cos', 'pi', 'cos')
         self.assertEqual(calc.stack, [math.cos(math.pi), 0], 'Error in cos func') 
+    
+    def test_tan(self):
+        calc = Calculator()
+        calc.push('pi', 2, '/', 'tan', 'pi', 'tan')
+        self.assertEqual(calc.stack, [0, math.nan], 'Error in tan func')

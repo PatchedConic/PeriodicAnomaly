@@ -1,5 +1,4 @@
 import math
-
 def sin(item) -> float:
     try:
         theta = item.pop()
@@ -13,6 +12,68 @@ def cos(item) -> float:
         theta = item.pop()
         if (theta+math.pi/2) % (math.pi) == 0: return 0
         else: return math.cos(theta)
+    except:
+        pass
+
+def tan(item) -> float:
+    try:
+        theta = item.pop()
+        if (theta+math.pi/2) % math.pi == 0: return math.nan
+        elif (theta % math.pi) == 0: return 0
+        else: return math.tan(theta)
+    except:
+        pass
+def sind(item) -> float:
+    try:
+        return sin(item.pop()*2*math.pi/360)
+    except:
+        pass
+
+def cosd(item) -> float:
+    try:
+        return sin(item.pop()*2*math.pi/360)
+    except:
+        pass
+
+def tand(item) -> float:
+    try:
+        return tan(item.pop()*2*math.pi/360)
+    except:
+        pass
+
+def asin(item) -> float:
+    try:
+        return asin(item.pop())
+    except:
+        pass
+
+def acos(item) -> float:
+    try:
+        return acos(item.pop())
+    except:
+        pass
+
+def atan(item) -> float:
+    try:
+        return atan(item.pop())
+    except:
+        pass
+
+def asind(item) -> float:
+    try:
+        return asin(item.pop())*360/(math.pi*2)
+    except:
+        pass
+
+def acosd(item) -> float:
+    try:
+        return acos(item.pop())*360/(math.pi*2)
+    except:
+        pass
+
+def atand(item) -> float:
+    try:
+        return atan(item.pop())*360/(math.pi*2)
     except:
         pass
 
