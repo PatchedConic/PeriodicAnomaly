@@ -1,6 +1,5 @@
-import curses
-from curses import wrapper
-import time
+from textual.app import App, ComposeResult
+
 
 def main(stdscr):
     stdscr.clear()
