@@ -1,5 +1,21 @@
 import math
 
+def sin(item) -> float:
+    try:
+        theta = item.pop()
+        if theta % math.pi == 0: return 0
+        else: return math.sin(theta)
+    except:
+        pass
+
+def cos(item) -> float:
+    try:
+        theta = item.pop()
+        if (theta+math.pi/2) % (math.pi) == 0: return 0
+        else: return math.cos(theta)
+    except:
+        pass
+
 def addition(item) -> float:
     if len(item)>1 : return item.pop() + item.pop()
     else:

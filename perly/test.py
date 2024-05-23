@@ -1,5 +1,6 @@
 from perly.calculator import Calculator
 import unittest
+import math
 
 class CalculatorTest(unittest.TestCase):
     def test_push_nums(self):
@@ -13,3 +14,15 @@ class CalculatorTest(unittest.TestCase):
                   8, '-', 'sqrt', 2, '-', 'square', 'e', 'log', '-', 9, 'swap', '/', 2, '^')
         self.assertEqual(calc.stack, [9], "Test failed: arithmetic")
 
+    def test_sin(self):
+        calc = Calculator()
+        calc.push(8, 'pi', '*', 'sin')
+        self.assertEqual(calc.stack, [0], f'Test failed: sin(8*pi) != 0')
+        calc.push(3.5, '+', 'pi', '*', 'sin')
+        self.assertEqual(calc.stack, [math.sin(3.5*math.pi)], f"""Test failed: sin(3.5*pi) evaluated as: {calc.stack[0]} 
+Correct answer, {math.sin(3.5*math.pi)}""")
+
+    def test_cos(self):
+        calc = Calculator()
+        calc.push(3, 'pi', 2, '/', '*', 'cos', 'pi', 'cos')
+        self.assertEqual(calc.stack, [math.cos(math.pi), 0], 'Error in cos func') 
