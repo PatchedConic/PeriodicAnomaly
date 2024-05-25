@@ -1,9 +1,12 @@
 from textual.app import App, ComposeResult
+from textual.widgets import Header
 
+class AnomalyTUI(App):
 
-def main(stdscr):
-    stdscr.clear()
-    time.sleep(5)
+    def compose(self) -> ComposeResult:
+        yield Header()
+
 
 if __name__ == "__main__":
-    wrapper(main)
+    app = AnomalyTUI()
+    app.run()
