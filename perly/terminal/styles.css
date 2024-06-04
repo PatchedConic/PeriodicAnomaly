@@ -1,0 +1,23 @@
+Screen {
+    border: solid white;
+}
+Register {
+    align: left top;
+    border: solid white;
+    text-align: right;
+}
+
+Stack {
+    width: 50%;
+}
+
+Shortcuts {
+    width: 50%;
+    border: solid white;
+}
+
+#shortcuts {
+    align: right top;
+    border: solid white;
+    text-align: left;
+}

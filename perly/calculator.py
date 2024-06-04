@@ -16,25 +16,39 @@ class Calculator():
     
     def __init__(self):
         self.stack = []
+        self.listeners = []
 
     def __repr__(self):
         return str(self.stack)
     
     def __len__(self):
         return len(self.stack)
+    
+    def update(self) -> None:
+        for listener in self.listeners:
+            listener.update()
+
+    def add_listeners(self, listener) -> None:
+        self.listeners.append(listener)
 
     def pop(self, n: int = 0) -> float:
         try:
             return self.stack.pop(n)
         except IndexError:
-            return None
-
-
+            return math.nan
+        
+    def peek(self, n: int = 0) -> float:
+        try: 
+            return self.stack[n]
+        except IndexError:
+            return math.nan
+    
     def push(self, *tokens:float | str) -> None:
         for token in tokens:
             try:
                 float(token)
-                self.stack.insert(0, token)
+                self.stack.insert(0, float(token))
+                self.update()
             except:
                 if token in MATH_TOKENS:
                     try:
