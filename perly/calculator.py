@@ -59,6 +59,10 @@ class Calculator():
                     pass
                 else:
                     raise Exception(f"Invalid token: {token}")
+    
+    def clear(self) -> None:
+        self.stack = []
+        self.update()
 
 if __name__ == '__main__':
     calc = Calculator()

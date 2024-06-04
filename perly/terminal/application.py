@@ -20,20 +20,26 @@ class AnomalyTUI(App):
     def compose(self) -> ComposeResult:
         yield Header()
         self.stack = Stack(AnomalyTUI.CALC)
+        self.shortcuts = Shortcuts()
         yield Container(Horizontal(
             self.stack,
-            Shortcuts()
+            self.shortcuts
         ))
-        yield RichLog()
+        # yield RichLog()
+
     
     def on_key(self, event: events.Key) -> None:
-        self.query_one(RichLog).write(event)
+        # self.query_one(RichLog).write(event)
         if event.character in DIGITS:
             self.stack.push(event.character)
         elif event.key == 'enter':
             self.stack.enter()
+        elif event.key == 'backspace':
+            self.stack.backspace()
         elif event.key in KEYBINDINGS.keys():
             self.stack.push(event.key)
+        elif event.key == 'escape':
+            self.stack.clear()
 
 
 if __name__ == "__main__":

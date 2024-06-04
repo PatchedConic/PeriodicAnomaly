@@ -17,10 +17,23 @@ class Stack(Container):
             self.y_reg,
             self.z_reg,
             self.t_reg,
-            Label("This area for command shortcuts", id="shortcuts")
+            Label("""Thanks for checking out Anomaly!
+Check out the source code at Github""", id="thankyou")
         ))
         self.calc = calc
         self.calc.add_listeners(self)
+        self.update()
+
+    def clear(self) -> None:
+        self.x_reg.entry = ""
+        self.calc.clear()
+        self.update()
+
+    def backspace(self) -> None:
+        if self.x_reg.entry != "":
+            self.x_reg.entry = self.x_reg.entry[0:-1]
+        else:
+            self.calc.pop()
         self.update()
 
     def enter(self) -> None:
