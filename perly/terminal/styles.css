@@ -1,0 +1,47 @@
+Screen {
+    border: solid $primary;
+}
+Register {
+    align: left top;
+    border: solid $primary;
+    text-align: right;
+}
+
+Stack {
+    width: 50%;
+}
+
+Shortcuts {
+    width: 50%;
+    border: solid $primary;
+    height: 24;
+}
+
+#thankyou {
+    text-align: center;
+    align: center top;
+    width: 100%;
+    /* align: center middle; */
+}
+
+.table_left{
+    align: left top;
+    text-align: left;
+    width: 50%;
+
+}
+
+.table_right{
+    align: right top;
+    text-align: right;
+    width: 50%;
+
+}
+
+.table_light {
+    background: $surface;
+}
+
+.table_dark {
+    background: $panel
+}
