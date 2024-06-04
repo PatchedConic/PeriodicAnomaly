@@ -16,6 +16,7 @@ class AnomalyTUI(App):
 
     def __init__(self):
         super().__init__()
+        self.title = "Anomaly"
 
     def compose(self) -> ComposeResult:
         yield Header()
