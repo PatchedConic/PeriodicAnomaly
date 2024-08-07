@@ -8,11 +8,11 @@ Register {
 }
 
 Stack {
-    width: 50%;
+    width: 49;
 }
 
 Shortcuts {
-    width: 50%;
+    width: 49;
     border: solid $primary;
     height: 24;
 }

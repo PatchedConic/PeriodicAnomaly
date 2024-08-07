@@ -13,10 +13,10 @@ class Stack(Container):
         self.z_reg = Register('z', calc)
         self.t_reg = Register('t', calc)
         super().__init__(Vertical(
-            self.x_reg,
-            self.y_reg,
-            self.z_reg,
             self.t_reg,
+            self.z_reg,
+            self.y_reg,
+            self.x_reg,
             Label("""Thanks for checking out Anomaly!
 Check out the source code at Github""", id="thankyou")
         ))
@@ -43,15 +43,15 @@ Check out the source code at Github""", id="thankyou")
 
     def update(self) -> None:
         if self.x_reg.entry == "":
-            self.x_reg.update(str(self.calc.peek(0)))
-            self.y_reg.update(str(self.calc.peek(1)))
-            self.z_reg.update(str(self.calc.peek(2)))
             self.t_reg.update(str(self.calc.peek(3)))
+            self.z_reg.update(str(self.calc.peek(2)))
+            self.y_reg.update(str(self.calc.peek(1)))
+            self.x_reg.update(str(self.calc.peek(0)))
         else:
-            self.x_reg.update(self.x_reg.entry)
-            self.y_reg.update(str(self.calc.peek(0)))
-            self.z_reg.update(str(self.calc.peek(1)))
             self.t_reg.update(str(self.calc.peek(2)))
+            self.z_reg.update(str(self.calc.peek(1)))
+            self.y_reg.update(str(self.calc.peek(0)))
+            self.x_reg.update(self.x_reg.entry)
 
     def push(self, token) -> None:
         if token in DIGITS:
