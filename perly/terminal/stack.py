@@ -1,6 +1,8 @@
-from textual.containers import Container, Vertical
-from textual.widgets import Label
+from textual.containers import Container, Vertical, Horizontal
+from textual.widgets import Label, Switch, Button
 from perly.calculator import Calculator
+from perly.terminal.trig_switch import Trig_Switch
+
 
 from perly.terminal.register import Register
 from perly.consts import DIGITS
@@ -12,15 +14,18 @@ class Stack(Container):
         self.y_reg = Register('y', calc)
         self.z_reg = Register('z', calc)
         self.t_reg = Register('t', calc)
+        self.calc = calc
+        self.trig_label = Label(f"{self.calc.trigMode}")
+        self.trig_container = Container(self.trig_label, id = "trig_container")
+        self.trig_container.border_title = "Mode"
+        self.thankyou_label = Label("""Thanks for checking out Anomaly! Check out the source code at Github""", id="thankyou")
         super().__init__(Vertical(
             self.t_reg,
             self.z_reg,
             self.y_reg,
             self.x_reg,
-            Label("""Thanks for checking out Anomaly!
-Check out the source code at Github""", id="thankyou")
-        ))
-        self.calc = calc
+            Horizontal(self.thankyou_label, self.trig_container
+                )))
         self.calc.add_listeners(self)
         self.update()
 

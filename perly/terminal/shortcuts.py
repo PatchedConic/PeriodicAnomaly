@@ -27,7 +27,8 @@ class Shortcuts(Container):
         ("Delete", "backspace"),
         ("Clear", "escape or del"),
         ("Command Pallete", "ctrl+\\"),
-        ("Quit", "ctrl+c")
+        ("Quit", "ctrl+c"),
+        ("Rad/Deg", "m")
     ]
 
     def __init__(self):

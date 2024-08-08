@@ -1,80 +1,110 @@
 import math
 def sin(item) -> float:
     try:
-        theta = item.pop()
-        if theta % math.pi == 0: return 0
-        else: return math.sin(theta)
+        if item.trigMode == 'radians':
+            theta = item.pop()
+            if theta % math.pi == 0: return 0
+            else: return math.sin(theta)
+        elif item.trigMode == 'degrees':
+            return sind(item)
+        else: raise Exception("Holy fuck")
     except:
-        pass
+        raise Exception("Holy fuck")
 
 def cos(item) -> float:
     try:
-        theta = item.pop()
-        if (theta+math.pi/2) % (math.pi) == 0: return 0
-        else: return math.cos(theta)
+        if item.trigMode == 'radians':
+            theta = item.pop()
+            if (theta+math.pi/2) % (math.pi) == 0: return 0
+            else: return math.cos(theta)
+        elif item.trigMode == 'degrees':
+            return cosd(item)
     except:
         pass
 
 def tan(item) -> float:
     try:
-        theta = item.pop()
-        if (theta+math.pi/2) % math.pi == 0: return math.nan
-        elif (theta % math.pi) == 0: return 0
-        else: return math.tan(theta)
+        if item.trigMode == 'radians':
+            theta = item.pop()
+            if (theta+math.pi/2) % math.pi == 0: return math.nan
+            elif (theta % math.pi) == 0: return 0
+            else: return math.tan(theta)
+        elif item.trigMode == 'degrees':
+            return tand(item)
     except:
         pass
+
 def sind(item) -> float:
     try:
-        return sin(item.pop()*2*math.pi/360)
+        theta = item.pop()
+        if theta % 180 == 0:
+            return 0
+        else:
+            return math.sin(theta*2*math.pi/360)
     except:
         pass
 
 def cosd(item) -> float:
     try:
-        return sin(item.pop()*2*math.pi/360)
+        theta = item.pop()
+        if (theta+90) % 180 == 0: return 0
+        else:
+            return sin(theta*2*math.pi/360)
     except:
         pass
 
 def tand(item) -> float:
     try:
-        return tan(item.pop()*2*math.pi/360)
+        theta = item.pop()
+        if (theta + 90) % 180 == 0: return math.nan
+        elif theta % 180 == 0: return 0
+        else:
+            return tan(theta*2*math.pi/360)
     except:
         pass
 
 def asin(item) -> float:
     try:
-        return math.asin(item.pop())
-
+        if item.trigMode == 'radians':
+            return math.asin(item.pop())
+        elif item.trigMode == 'degrees':
+            return asind(item)
     except:
         raise Exception
 
 def acos(item) -> float:
     try:
-        return math.acos(item.pop())
+        if item.trigMode == 'radians':
+            return math.acos(item.pop())
+        elif item.trigMode == 'degrees':
+            return acosd(item)
     except:
         pass
 
 def atan(item) -> float:
     try:
-        return math.atan(item.pop())
+        if item.trigMode == 'radians':
+            return math.atan(item.pop())
+        elif item.trigMode == 'degrees':
+            return atand(item)
     except:
         pass
 
 def asind(item) -> float:
     try:
-        return (asin(item)*360/(math.pi*2))
+        return (math.asin(item.pop())*360/(math.pi*2))
     except:
         pass
 
 def acosd(item) -> float:
     try:
-        return acos(item)*360/(math.pi*2)
+        return math.acos(item.pop())*360/(math.pi*2)
     except:
         pass
 
 def atand(item) -> float:
     try:
-        return atan(item)*360/(math.pi*2)
+        return math.atan(item.pop())*360/(math.pi*2)
     except:
         pass
 
