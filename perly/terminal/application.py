@@ -1,7 +1,8 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Header, RichLog
+from textual.widgets import Header, Label
 from textual import events
 from textual.containers import Container, Horizontal
+
 
 from perly.terminal.stack import Stack
 from perly.terminal.shortcuts import Shortcuts
@@ -17,6 +18,8 @@ class AnomalyTUI(App):
     def __init__(self):
         super().__init__()
         self.title = "Anomaly"
+        global ApplicationInstance
+        ApplicationInstance = self
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -26,7 +29,6 @@ class AnomalyTUI(App):
             self.stack,
             self.shortcuts
         ))
-        # yield RichLog()
 
     
     def on_key(self, event: events.Key) -> None:
@@ -41,6 +43,12 @@ class AnomalyTUI(App):
             self.stack.push(event.key)
         elif event.key == 'escape':
             self.stack.clear()
+        elif event.key == 'm':
+            self.switch_trig_mode()
+
+    def switch_trig_mode(self):
+        AnomalyTUI.CALC.trigMode = 'degrees' if AnomalyTUI.CALC.trigMode == 'radians' else 'radians'
+        self.stack.trig_label.update(f"{AnomalyTUI.CALC.trigMode}")
 
 
 if __name__ == "__main__":

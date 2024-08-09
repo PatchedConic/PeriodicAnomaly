@@ -17,10 +17,20 @@ Shortcuts {
     height: 24;
 }
 
+#trig_container {
+    border: solid $primary;
+    /* display: flex; */
+    align: center middle;
+    width: 25%;
+    height: 4;
+}
+
 #thankyou {
+    /* text-align: center; */
     text-align: center;
-    align: center top;
-    width: 100%;
+    align: center middle;
+    width: 75%;
+    height: auto;
     /* align: center middle; */
 }
 

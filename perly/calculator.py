@@ -17,6 +17,7 @@ class Calculator():
     def __init__(self):
         self.stack = []
         self.listeners = []
+        self.trigMode = 'radians'
 
     def __repr__(self):
         return str(self.stack)
